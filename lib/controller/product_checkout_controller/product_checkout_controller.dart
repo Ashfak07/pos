@@ -3,6 +3,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'package:pos/model/facturemodel/facture.dart';
 import 'package:pos/model/product_view_model/product_view_model.dart';
 import 'package:pos/model/sales_report_model/sales_report_model.dart';
@@ -84,26 +85,31 @@ class ProductcheckoutController with ChangeNotifier {
   }
 
   Future<SalesReportModel?> Salesreport() async {
-    int checkoutid = 0;
+    var checkoutid;
     SalesReportModel? salesmode;
     FactureModel facture = FactureModel(
         price: totalAmount.toString(), date: DateTime.now().toString());
     Facture();
+    checkoutid = facture.id;
 
-    print(checkoutid.toString());
+    // print(checkoutid.toString());
 
     checkoutprdt.forEach((element) async {
       int totalprice = (int.parse(element.prdtqty.toString().trim()) *
           int.parse(element.prdtprice.toString()));
+      DateTime now = DateTime.now();
+      String formattedDate = DateFormat('MMMdd').format(now);
       final uri = Uri.parse('http://192.168.1.9/pos/salesreport.php');
       http.Response response;
       response = await http.post(uri, body: {
         "prdtname": element.prdtname,
         "prdtqty": element.prdtqty,
-        "prdtprice": totalAmount.toString(),
+        "prdtprice": totalprice.toString(),
         "prdtcode": element.prdtcode,
-        "date": DateTime.now().toString()
+        "date": formattedDate
+        // reportmodel
       });
+
       ProductviewModel? model = await getproduct(element.prdtcode.toString());
       notifyListeners();
       int newqty = 0;
@@ -114,11 +120,11 @@ class ProductcheckoutController with ChangeNotifier {
         clearBascket();
         notifyListeners();
       }
-      if (response.statusCode == 200) {
-        print('success');
-      } else {
-        print('object');
-      }
+      // if (response.statusCode == 200) {
+      //   print('success');
+      // } else {
+      //   print('object');
+      // }
     });
 
     return salesmode;
@@ -127,7 +133,7 @@ class ProductcheckoutController with ChangeNotifier {
   void updateproduct<ProductviewModel>(String code, String qty) async {
     var url = 'http://192.168.1.9/pos/update_product.php';
     await http.post(Uri.parse(url), body: {"prdtcode": code, "prdtqty": qty});
-    print('object');
+    print('qty updated');
     notifyListeners();
   }
 

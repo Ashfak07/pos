@@ -54,7 +54,10 @@ class CashScreen extends StatelessWidget {
                   backgroundColor: MaterialStatePropertyAll(
                       const Color.fromARGB(255, 142, 220, 145))),
               onPressed: () {
-                context.read<ProductcheckoutController>().Salesreport();
+                context
+                    .read<ProductcheckoutController>()
+                    .Salesreport()
+                    .then((value) => Navigator.pop(context));
               },
               child: Text(
                 'Cash',

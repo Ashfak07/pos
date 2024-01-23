@@ -1,5 +1,4 @@
 class SalesReportModel {
-  String id;
   String checkoutid;
   String prdtname;
   String prdtprice;
@@ -8,7 +7,6 @@ class SalesReportModel {
   String date;
 
   SalesReportModel({
-    required this.id,
     required this.checkoutid,
     required this.prdtname,
     required this.prdtprice,
@@ -19,7 +17,6 @@ class SalesReportModel {
 
   factory SalesReportModel.fromJson(Map<String, dynamic> json) =>
       SalesReportModel(
-        id: json["id"],
         checkoutid: json['checkoutid'],
         prdtname: json["prdtname"],
         prdtprice: json["prdtprice"],
@@ -29,7 +26,6 @@ class SalesReportModel {
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
         "checkoutid": checkoutid,
         "prdtname": prdtname,
         "prdtprice": prdtprice,
