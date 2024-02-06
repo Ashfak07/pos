@@ -11,7 +11,7 @@ class ProductAddController with ChangeNotifier {
       required String price,
       required String code,
       required File image}) async {
-    final uri = Uri.parse('http://192.168.1.9/pos/productsadd.php');
+    final uri = Uri.parse('http://192.168.1.8/pos/productsadd.php');
     var request = http.MultipartRequest('POST', uri);
 
     request.fields['prdtname'] = name;
@@ -31,20 +31,20 @@ class ProductAddController with ChangeNotifier {
   }
 
   Future getProduct() async {
-    var url = 'http://192.168.1.9/pos/product_view.php';
+    var url = 'http://192.168.1.8/pos/product_view.php';
     var response = await http.get(Uri.parse(url));
 
     return jsonDecode(response.body);
   }
 
   void deleteitem(String index) async {
-    var url = 'http://192.168.1.9/pos/delete_product.php';
+    var url = 'http://192.168.1.8/pos/delete_product.php';
     await http.post(Uri.parse(url), body: {"id": index});
     notifyListeners();
   }
 
   void editproduct(String id, String qty) async {
-    var url = 'http://192.168.1.9/pos/updateqty.php';
+    var url = 'http://192.168.1.8/pos/updateqty.php';
     await http.post(Uri.parse(url), body: {"id": id, "prdtqty": qty});
     print('object');
     notifyListeners();

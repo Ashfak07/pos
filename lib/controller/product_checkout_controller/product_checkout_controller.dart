@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_beep/flutter_beep.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:pos/model/facturemodel/facture.dart';
@@ -9,19 +10,20 @@ import 'package:pos/model/product_view_model/product_view_model.dart';
 import 'package:pos/model/sales_report_model/sales_report_model.dart';
 
 class ProductcheckoutController with ChangeNotifier {
+  bool isloading = false;
   ProductviewModel? model;
   List<ProductviewModel> checkoutprdt = [];
 
   //getproduct by barcode
   Future getCheckoutproduct(String code) async {
-    var url = 'http://192.168.1.9/pos/checkout_product_view.php';
+    isloading = true;
+    var url = 'http://192.168.1.8/pos/checkout_product_view.php';
     var response = await http.post(Uri.parse(url), body: {"prdtcode": code});
     final List jsondata = jsonDecode(response.body);
     jsondata.forEach((element) {
       checkoutprdt.add(ProductviewModel.fromJson(element));
-
-      totalBillAmount();
       notifyListeners();
+      totalBillAmount();
     });
   }
 
@@ -69,7 +71,7 @@ class ProductcheckoutController with ChangeNotifier {
   bool isProductExist = false;
   Future<ProductviewModel?> getproduct(String code) async {
     ProductviewModel? model;
-    var url = 'http://192.168.1.9/pos/checkout_product_view.php';
+    var url = 'http://192.168.1.8/pos/checkout_product_view.php';
     var response = await http.post(Uri.parse(url), body: {"prdtcode": code});
     final List jsondata = jsonDecode(response.body);
     if (jsondata.length > 0) {
@@ -98,8 +100,8 @@ class ProductcheckoutController with ChangeNotifier {
       int totalprice = (int.parse(element.prdtqty.toString().trim()) *
           int.parse(element.prdtprice.toString()));
       DateTime now = DateTime.now();
-      String formattedDate = DateFormat('MMMdd').format(now);
-      final uri = Uri.parse('http://192.168.1.9/pos/salesreport.php');
+      String formattedDate = DateFormat('dd').format(now);
+      final uri = Uri.parse('http://192.168.1.8/pos/salesreport.php');
       http.Response response;
       response = await http.post(uri, body: {
         "prdtname": element.prdtname,
@@ -131,7 +133,7 @@ class ProductcheckoutController with ChangeNotifier {
   }
 
   void updateproduct<ProductviewModel>(String code, String qty) async {
-    var url = 'http://192.168.1.9/pos/update_product.php';
+    var url = 'http://192.168.1.8/pos/update_product.php';
     await http.post(Uri.parse(url), body: {"prdtcode": code, "prdtqty": qty});
     print('qty updated');
     notifyListeners();
@@ -140,7 +142,7 @@ class ProductcheckoutController with ChangeNotifier {
   Future<FactureModel?> Facture() async {
     FactureModel? model;
 
-    final uri = Uri.parse('http://192.168.1.9/pos/facture.php');
+    final uri = Uri.parse('http://192.168.1.8/pos/facture.php');
     http.Response response;
     response = await http.post(uri, body: {
       'price': totalAmount.toString(),

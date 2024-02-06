@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:pos/controller/product_checkout_controller/product_checkout_controller.dart';
 import 'package:pos/model/product_view_model/product_view_model.dart';
 import 'package:pos/utils/const/textstyle_const.dart';
-import 'package:pos/utils/const/variable_const.dart';
 import 'package:pos/view/cashscreen/cash_screen.dart';
 import 'package:pos/view/changequantity_screeen/change_quantity_screen.dart';
 import 'package:provider/provider.dart';
@@ -20,14 +19,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
-    print(Provider.of<ProductcheckoutController>(context, listen: false)
-        .checkoutprdt);
+    Provider.of<ProductcheckoutController>(context, listen: false)
+        .getCheckoutproduct('');
     // TODO: implement initState
     super.initState();
   }
 
-  List newlist = [];
-  List list = [];
   bool scanstate = false;
   String _scanbarcodeResult1 = '';
   Future<void> barCodeScanner(BuildContext context) async {
@@ -42,6 +39,9 @@ class _HomeScreenState extends State<HomeScreen> {
     if (mounted) {
       setState(() {
         _scanbarcodeResult1 = result;
+        context
+            .read<ProductcheckoutController>()
+            .getCheckoutproduct(_scanbarcodeResult1);
       });
     } else {
       Text('something wrong');
@@ -155,10 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
             InkWell(
               onTap: () {
                 barCodeScanner(context);
-                context
-                    .read<ProductcheckoutController>()
-                    .getCheckoutproduct(_scanbarcodeResult1);
-                scanstate = true;
+
                 setState(() {});
               },
               child: Container(
@@ -193,7 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Divider(
               thickness: 10,
             ),
-            scanstate == true
+            produccheckout.isloading
                 ? Container(
                     child: Expanded(
                     child: ListView(
@@ -205,7 +202,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ))
                 : Text('data'),
             _buildTotalPrice(produccheckout, scanstate),
-            scanstate == true
+            produccheckout.isloading
                 ? ElevatedButton(
                     style: ButtonStyle(
                         backgroundColor: MaterialStatePropertyAll(

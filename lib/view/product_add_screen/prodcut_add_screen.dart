@@ -226,7 +226,7 @@ class _ProductAddScreenState extends State<ProductAddScreen> {
                                           ondismiss(context, list[index]['id']);
                                           setState(() {
                                             var url =
-                                                'http://192.168.1.9/pos/delete_product.php';
+                                                'http://192.168.1.8/pos/delete_product.php';
                                             http.post(Uri.parse(url), body: {
                                               "id": list[index]['id']
                                             });
@@ -261,11 +261,11 @@ class _ProductAddScreenState extends State<ProductAddScreen> {
                                         ]),
                                     child: ListTile(
                                       leading: Container(
-                                        height: 100,
+                                        height: 150,
                                         width: 100,
                                         child: Image.network(
-                                          'http://192.168.1.9/pos/uplods${list[index]['prdtiamge']}',
-                                          height: 100,
+                                          'http://192.168.1.8/pos/uplods/${list[index]['prdtiamge']}',
+                                          height: 150,
                                           width: 100,
                                         ),
                                       ),
