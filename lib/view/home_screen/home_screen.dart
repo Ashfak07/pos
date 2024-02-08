@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Dashboard',
+                  'Sales',
                   style: TextStyleConst.heading3,
                 ),
                 Icon(
@@ -77,76 +77,76 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  height: 100,
-                  width: 170,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      gradient: LinearGradient(colors: [
-                        Color.fromARGB(255, 151, 47, 202),
-                        Color.fromARGB(255, 225, 88, 150)
-                      ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey,
-                          offset: Offset(9.0, 7), //(x,y)
-                          blurRadius: 9.0,
-                        )
-                      ]),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 17),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Image.asset('assets/icons/Slice.png'),
-                        Text(
-                          '120',
-                          style: TextStyleConst.heading4,
-                        ),
-                        Text(
-                          'Product in',
-                          style: TextStyleConst.heading4,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  height: 100,
-                  width: 170,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      gradient: LinearGradient(colors: [
-                        Color.fromARGB(145, 91, 3, 74),
-                        Color.fromARGB(255, 238, 105, 105)
-                      ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey,
-                          offset: Offset(9.0, 7), //(x,y)
-                          blurRadius: 9.0,
-                        )
-                      ]),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 17),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Image.asset('assets/icons/Slice.png'),
-                        Text(
-                          '120',
-                          style: TextStyleConst.heading4,
-                        ),
-                        Text(
-                          'Product out',
-                          style: TextStyleConst.heading4,
-                        )
-                      ],
-                    ),
-                  ),
-                )
+                // Container(
+                //   height: 100,
+                //   width: 170,
+                //   decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(15),
+                //       gradient: LinearGradient(colors: [
+                //         Color.fromARGB(255, 151, 47, 202),
+                //         Color.fromARGB(255, 225, 88, 150)
+                //       ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+                //       boxShadow: [
+                //         BoxShadow(
+                //           color: Colors.grey,
+                //           offset: Offset(9.0, 7), //(x,y)
+                //           blurRadius: 9.0,
+                //         )
+                //       ]),
+                //   child: Padding(
+                //     padding: const EdgeInsets.symmetric(horizontal: 17),
+                //     child: Column(
+                //       mainAxisAlignment: MainAxisAlignment.center,
+                //       crossAxisAlignment: CrossAxisAlignment.start,
+                //       children: [
+                //         Image.asset('assets/icons/Slice.png'),
+                //         Text(
+                //           '120',
+                //           style: TextStyleConst.heading4,
+                //         ),
+                //         Text(
+                //           'Product in',
+                //           style: TextStyleConst.heading4,
+                //         )
+                //       ],
+                //     ),
+                //   ),
+                // ),
+                // Container(
+                //   height: 100,
+                //   width: 170,
+                //   decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(15),
+                //       gradient: LinearGradient(colors: [
+                //         Color.fromARGB(145, 91, 3, 74),
+                //         Color.fromARGB(255, 238, 105, 105)
+                //       ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+                //       boxShadow: [
+                //         BoxShadow(
+                //           color: Colors.grey,
+                //           offset: Offset(9.0, 7), //(x,y)
+                //           blurRadius: 9.0,
+                //         )
+                //       ]),
+                //   child: Padding(
+                //     padding: const EdgeInsets.symmetric(horizontal: 17),
+                //     child: Column(
+                //       mainAxisAlignment: MainAxisAlignment.center,
+                //       crossAxisAlignment: CrossAxisAlignment.start,
+                //       children: [
+                //         Image.asset('assets/icons/Slice.png'),
+                //         Text(
+                //           '120',
+                //           style: TextStyleConst.heading4,
+                //         ),
+                //         Text(
+                //           'Product out',
+                //           style: TextStyleConst.heading4,
+                //         )
+                //       ],
+                //     ),
+                //   ),
+                // )
               ],
             ),
             SizedBox(

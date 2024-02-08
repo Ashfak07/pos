@@ -78,6 +78,10 @@ class _ProductAddScreenState extends State<ProductAddScreen> {
     ProductAddController productList = Provider.of(context, listen: false);
     return Scaffold(
         appBar: AppBar(
+          title: Text(
+            'Inventory',
+            style: TextStyleConst.heading3,
+          ),
           actions: [
             InkWell(
               onTap: () {

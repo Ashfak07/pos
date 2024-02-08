@@ -9,6 +9,8 @@ import 'package:pos/model/product_list_model/product_list_model.dart';
 import 'package:pos/view/bottomnav/bottom_navbar.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pos/view/changequantity_screeen/change_quantity_screen.dart';
+import 'package:pos/view/onboardingpage/onboarding_page.dart';
+import 'package:pos/view/splashscreen/splash_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -33,7 +35,7 @@ class MyApp extends StatelessWidget {
           create: (context) => ProductcheckoutController(),
         ),
       ],
-      child: GetMaterialApp(home: Bottomnav()),
+      child: GetMaterialApp(home: SplashScreen()),
     );
   }
 }

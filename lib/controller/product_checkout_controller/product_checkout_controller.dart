@@ -100,7 +100,7 @@ class ProductcheckoutController with ChangeNotifier {
       int totalprice = (int.parse(element.prdtqty.toString().trim()) *
           int.parse(element.prdtprice.toString()));
       DateTime now = DateTime.now();
-      String formattedDate = DateFormat('dd').format(now);
+      String formattedDate = DateFormat('yyyy-MM-dd').format(now);
       final uri = Uri.parse('http://192.168.1.8/pos/salesreport.php');
       http.Response response;
       response = await http.post(uri, body: {
